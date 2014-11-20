@@ -1,0 +1,9 @@
+body
+{
+    background: url(../images/background.jpg);
+}
+
+div#main
+{
+    margin: 40px 20px;
+}

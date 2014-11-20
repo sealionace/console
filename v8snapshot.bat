@@ -1,0 +1,1 @@
+nwsnapshot.exe --extra_code app/base.js app/base.bin
