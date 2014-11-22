@@ -82,3 +82,4 @@ nwsnapshot.exe
 locales
 app/images
 app/base.bin
+ace/*.js
