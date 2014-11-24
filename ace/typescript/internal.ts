@@ -13,7 +13,7 @@ import express = require("express");
 var appServe: express.RequestHandler = null;
 var http = express();
 
-http.use("/game", function (req, res, next) {
+http.use("/app", function (req, res, next) {
     if (appServe != null)
         appServe(req, res, next);
     else
@@ -29,10 +29,7 @@ var internal = {
 	run(app: app.App, nwGui: any, iframe: JQuery): void {
 		var appDir = path.resolve(aceAPI.getAppDir()) + "/" + app.getBundleID();
 		this.startApp(appDir);
-		iframe.attr("src", "http://localhost:" + aceAPI.getConsolePort() + "/game");
-		
-		var ifr = nwGui.Window.get(iframe);
-		
+		iframe.attr("src", "http://localhost:" + aceAPI.getConsolePort() + "/app");
 	}
 };
 

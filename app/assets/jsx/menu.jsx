@@ -9,7 +9,32 @@ var app = require("ace/app");
 var internal = require("ace/internal");
 var gui = require("nw.gui");
 
-gui.Window.get().showDevTools();
+// registra o desregistrador de coisas
+var win = gui.Window.get();
+win.on('document-start', function(appFrame) {
+    if (appFrame != null) { // estamos em um iframe
+        var frameWindow = appFrame.contentWindow; // pega a janela dele
+        
+        //deprecated
+        //frameWindow.ACE = ace();
+        
+        delete frameWindow.global;
+        delete frameWindow.process;
+        delete frameWindow.nwDispatcher;
+        
+        frameWindow.require = function(module) {
+            if (!module || typeof module !== "string")
+                throw new TypeError("O módulo deve ser fornecido");
+            
+            if (module === "ace")
+                return ace();
+            
+            // implementar integração com requirejs para fornecer jQuery e afins
+            
+            throw new Exception("O módulo informado não existe");
+        };
+    }
+});
 
 var Tile = React.createClass({
     
@@ -57,56 +82,18 @@ var Tile = React.createClass({
     
     execute: function() {
         var iframe = $("<iframe height='100%' width='100%' frameborder='no' />");
+        iframe.height($(document).height());
         internal.run(this.props.app, gui, iframe);
         $app.empty().append(iframe);
         
         iframe.on('load', function() {
             $main.toggleClass("invisible");
             $app.toggleClass("invisible");
+            iframe.focus();
         });
     }
     
 });
-/*
-var MainMenu = React.createClass({
-    
-    render: function() {
-        return (
-        <div id="menu">
-            <Tile size="double" image="images/all/Spelunky.jpg" />
-            <Tile size="double" image="images/grid2.png" />
-            <Tile background-color="blue" image="images/pinball.png" />
-            <Tile background-color="darkPink" icon="cart-2">
-                <div className="tile-status">
-                    <span className="name">Store</span>
-                </div>
-            </Tile>
-            <Tile image="images/Battlefield_4_Icon.png">
-                <div className="brand bg-dark opacity">
-                    <span className="text">
-                        Battlefield 4, agora disponível!
-                    </span>
-                </div>
-            </Tile>
-            <Tile background-color="black" image="images/Crysis-2-icon.png" />
-            <Tile background-color="black" image="images/Mario.png" />
-            <Tile image="images/all/config.png" />
-            <Tile size="double" image="images/all/journey.jpg" />
-            <Tile background-color="darkRed" image="images/D3.png" />
-            <Tile size="double" image="images/all/minecraft.jpg" />
-            <Tile background-color="black" image="images/all/fp1.jpg" />
-            <Tile size="double" image="images/b2.jpg">
-                <div className="brand bg-dark opacity">
-                    <span className="text">
-                        Em breve, Ace para Windows!
-                    </span>
-                </div>
-            </Tile>
-        </div>
-        );
-    }
-    
-});*/
 
 var Main = React.createClass({
 

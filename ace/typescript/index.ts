@@ -10,7 +10,15 @@ function ace(conf: any) {
 
 		getControllerPort(): number {
 			return conf["controller-port"] || 11000;
-		}
+		},
+        
+        getAppWidth(): number {
+            return 1600;
+        },
+        
+        getAppHeight(): number {
+            return 900;
+        }
 	};
 }
 
