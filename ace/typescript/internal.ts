@@ -9,7 +9,6 @@ import app = require("./app");
 import path = require("path");
 import fs = require("fs");
 import express = require("express");
-import gui = require("nw.gui");
 
 var appServe: express.RequestHandler = null;
 var http = express();
@@ -27,12 +26,12 @@ var internal = {
 		appServe = express.static(root, { index: "main.html" });
 	},
 
-	run(app: app.App, iframe: JQuery): void {
+	run(app: app.App, nwGui: any, iframe: JQuery): void {
 		var appDir = path.resolve(aceAPI.getAppDir()) + "/" + app.getBundleID();
 		this.startApp(appDir);
 		iframe.attr("src", "http://localhost:" + aceAPI.getConsolePort() + "/game");
 		
-		var ifr = gui.Window.get(iframe);
+		var ifr = nwGui.Window.get(iframe);
 		
 	}
 };

@@ -83,3 +83,4 @@ locales
 app/images
 app/base.bin
 ace/*.js
+.settings

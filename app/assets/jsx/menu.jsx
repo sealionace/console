@@ -7,6 +7,7 @@ var container = $main.get(0);
 var apps = require("ace/apps");
 var app = require("ace/app");
 var internal = require("ace/internal");
+var gui = require("nw.gui");
 
 var Tile = React.createClass({
     
@@ -54,9 +55,12 @@ var Tile = React.createClass({
     
     execute: function() {
         var iframe = $("<iframe />");
-        internal.run(this.props.app, iframe);
-        $main.toggleClass("invisible");
-        $app.empty().append(iframe).toggleClass("invisible");
+        internal.run(this.props.app, gui, iframe);
+        
+        iframe.on('ready', function() {
+            $main.toggleClass("invisible");
+            $app.empty().append(iframe).toggleClass("invisible");
+        });
     }
     
 });
