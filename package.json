@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "main": "app/index.html",
   "single-instance": true,
-  "user-agent": "%webkit_ver (%osinfo); SeaLion Ace/%ver",
+  "user-agent": "Webkit/    %webkit_ver (%osinfo); SeaLion Ace/%ver",
   "node-remote": "<local>",
   "node-main": "app/main.js",
   "snapshot": "app/base.bin",

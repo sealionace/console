@@ -9,6 +9,8 @@ var app = require("ace/app");
 var internal = require("ace/internal");
 var gui = require("nw.gui");
 
+gui.Window.get().showDevTools();
+
 var Tile = React.createClass({
     
     validateSize: function(size) {
@@ -54,12 +56,13 @@ var Tile = React.createClass({
     },
     
     execute: function() {
-        var iframe = $("<iframe />");
+        var iframe = $("<iframe height='100%' width='100%' frameborder='no' />");
         internal.run(this.props.app, gui, iframe);
+        $app.empty().append(iframe);
         
-        iframe.on('ready', function() {
+        iframe.on('load', function() {
             $main.toggleClass("invisible");
-            $app.empty().append(iframe).toggleClass("invisible");
+            $app.toggleClass("invisible");
         });
     }
     

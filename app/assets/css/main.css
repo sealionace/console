@@ -1,6 +1,10 @@
-body
+html, body
 {
     background: url(../images/background.jpg);
+    margin: auto;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
 }
 
 div#main
@@ -8,6 +12,19 @@ div#main
     margin: 40px 20px;
 }
 
+div#app {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+}
+/*
+div#app iframe {
+    width: 100%;
+    height: 100%;
+}
+*/
 .invisible {
 	display: none;
 }
