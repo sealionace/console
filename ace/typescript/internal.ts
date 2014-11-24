@@ -10,7 +10,9 @@ import path = require("path");
 import fs = require("fs");
 import express = require("express");
 
+var currentApp: app.App = null;
 var appServe: express.RequestHandler = null;
+var controlServe: express.RequestHandler = null;
 var http = express();
 
 http.use("/app", function (req, res, next) {
@@ -19,6 +21,14 @@ http.use("/app", function (req, res, next) {
     else
         next();
 });
+
+http.use("/controller", function (req, res, next) {
+    if (controlServe != null)
+        controlServe(req, res, next);
+    else
+        next();
+});
+
 http.listen(aceAPI.getConsolePort());
 
 var internal = {
@@ -27,9 +37,15 @@ var internal = {
 	},
 
 	run(app: app.App, nwGui: any, iframe: JQuery): void {
+		currentApp = app;
 		var appDir = path.resolve(aceAPI.getAppDir()) + "/" + app.getBundleID();
 		this.startApp(appDir);
 		iframe.attr("src", "http://localhost:" + aceAPI.getConsolePort() + "/app");
+	},
+
+	changeController(controller: string): void {
+		var appDir = path.resolve(aceAPI.getAppDir()) + "/" + currentApp.getBundleID() + "/" + controller;
+		controlServe = express.static(appDir, { index: "main.html" });
 	}
 };
 
