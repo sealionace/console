@@ -9,12 +9,25 @@ import app = require("./app");
 import path = require("path");
 import fs = require("fs");
 import express = require("express");
+import qr = require("qr-image");
+import os = require("os");
 
 var currentApp: app.App = null;
 var appServe: express.RequestHandler = null;
 var controlServe: express.RequestHandler = null;
 var http = express();
 
+var ifaces = os.networkInterfaces();
+var ip: string;
+for (var dev in ifaces) {
+	ifaces[dev].forEach(function(details) {
+		if (details.family == 'IPv4') {
+			ip = details.address;
+		}
+	});
+}
+
+// serve o app para o iframe
 http.use("/app", function (req, res, next) {
     if (appServe != null)
         appServe(req, res, next);
@@ -22,11 +35,17 @@ http.use("/app", function (req, res, next) {
         next();
 });
 
+// serve o controle para os conectados
 http.use("/controller", function (req, res, next) {
     if (controlServe != null)
         controlServe(req, res, next);
     else
         next();
+});
+
+// serve o QRCode para conectar haha (:
+http.get('/qrcode.svg', function(req, res) {
+	var code = qr.image('sl://
 });
 
 http.listen(aceAPI.getConsolePort());
