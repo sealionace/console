@@ -7,3 +7,7 @@ div#main
 {
     margin: 40px 20px;
 }
+
+.invisible {
+	display: none;
+}

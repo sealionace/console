@@ -5,12 +5,12 @@ function ace(conf: any) {
 		},
 
 		getConsolePort(): number {
-            return conf["console-port"] || 10000;
-        },
+			return conf["console-port"] || 10000;
+		},
 
-        getControllerPort(): number {
-            return conf["controller-port"] || 11000;
-        }
+		getControllerPort(): number {
+			return conf["controller-port"] || 11000;
+		}
 	};
 }
 

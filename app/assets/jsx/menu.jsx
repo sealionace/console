@@ -1,5 +1,8 @@
 /** @jsx React.DOM */
-var container = $("#main").get(0);
+var $main = $("#main");
+var $app = $("#app");
+
+var container = $main.get(0);
 
 var apps = require("ace/apps");
 var app = require("ace/app");
@@ -52,7 +55,8 @@ var Tile = React.createClass({
     execute: function() {
         var iframe = $("<iframe />");
         internal.run(this.props.app, iframe);
-        internal.
+        $main.toggleClass("invisible");
+        $app.empty().append(iframe).toggleClass("invisible");
     }
     
 });

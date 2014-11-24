@@ -1,0 +1,49 @@
+{
+    "src": null,
+    "main": "index.html",
+    "buildOnSave": true,
+    "projectType": "standard",
+    "compiler": {
+        "noLib": false,
+        "removeComments": true,
+        "noImplicitAny": false,
+        "declaration": true,
+        "sourceMap": false,
+        "propagateEnumConstants": false,
+        "allowAutomaticSemicolonInsertion": false,
+        "target": 0,
+        "module": 1,
+        "outDir": "./out",
+        "out": null
+    },
+    "codeFormat": {
+        "NewLineCharacter": "\n",
+        "ConvertTabsToSpaces": false,
+        "IndentSize": 1,
+        "TabSize": 1
+    },
+    "customBuild": {
+        "name": null,
+        "command": null,
+        "directory": null,
+        "environment": null,
+        "ownConsole": false
+    },
+    "customRun": {
+        "name": null,
+        "command": null,
+        "directory": null,
+        "environment": null,
+        "ownConsole": false
+    },
+    "documentation": {
+        "includeDeclarations": false,
+        "outputDirectory": null,
+        "readme": null,
+        "theme": "default"
+    },
+    "tslint": {
+        "useLint": false,
+        "lintFile": null
+    }
+}
