@@ -10,15 +10,17 @@ class Controller extends events.EventEmitter {
 	private paused: boolean = false;
 	
 	constructor(private io: SocketIO.Socket) {
+		super();
+		var that = this;
+		
 		io.on('pause', function() {
-			paused = true;
+			that.paused = true;
 		});
 		
 		io.on('resume', function() {
-			paused = false;
+			that.paused = false;
 		});
 		
-		var that = this;
 		io.on('event', function(data: any) {
 			var component: string = data.component || "unknown";
 			var evt: string = data.event || "unknown";
