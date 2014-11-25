@@ -12,7 +12,8 @@ div#main
     margin: 40px 20px;
 }
 
-div#app {
+div#app
+{
     position: relative;
     margin: 0;
     padding: 0;
@@ -20,11 +21,18 @@ div#app {
     left: 0;
 }
 
-div#app iframe {
+div#app iframe
+{
     width: 100%;
     height: 100%;
 }
 
-.invisible {
+div#connect
+{
+    /*background: #fff;*/
+}
+
+.invisible
+{
 	display: none;
 }

@@ -35,6 +35,10 @@ class Controller extends events.EventEmitter {
 	beep(times: number = 1): void {
 		this.socket.emit('beep', { vezes: times });
 	}
+    
+    isPaused(): boolean {
+        return this.paused;
+    }
 	
 	/*alternate(controller: string): void {
 		internal.changeController(controller);

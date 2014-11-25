@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var $main = $("#main");
 var $app = $("#app");
+var $connect = $("#connect");
 
 var container = $main.get(0);
 
@@ -8,6 +9,33 @@ var apps = require("ace/apps");
 var app = require("ace/app");
 var internal = require("ace/internal");
 var gui = require("nw.gui");
+
+var Controllers = require("ace/controllers");
+var Controller = require("ace/controller");
+
+Controllers.disconnectedHandler = function() {
+    if (Controllers.count() == 0) {
+        if (internal.getCurrentApp())
+            internal.getCurrentApp().emit('pause');
+        $main.removeClass("invisible").addClass("invisible");
+        $app.removeClass("invisible").addClass("invisible");
+        $connect.removeClass("invisible");
+    }
+};
+
+Controllers.connectedHandler = function() {
+    if (Controllers.count() > 0) {
+        if (internal.getCurrentApp()) {
+            internal.getCurrentApp().emit('resume');
+            $app.removeClass("invisible");
+            $main.removeClass("invisible").addClass("invisible");
+        } else {
+            $app.removeClass("invisible").addClass("invisible");
+            $main.removeClass("invisible");
+        }
+        $connect.removeClass("invisible").addClass("invisible");
+    }
+};
 
 // registra o desregistrador de coisas
 var win = gui.Window.get();
@@ -26,8 +54,14 @@ win.on('document-start', function(appFrame) {
             if (!module || typeof module !== "string")
                 throw new TypeError("O módulo deve ser fornecido");
             
-            if (module === "ace")
-                return ace();
+            if (module === "ace") {
+                var ret = ace();
+                ret.Controllers = Controllers;
+                ret.Controller = Controller;
+                ret.App = internal.getCurrentApp();
+                
+                return ret;
+            }
             
             // implementar integração com requirejs para fornecer jQuery e afins
             
@@ -87,8 +121,9 @@ var Tile = React.createClass({
         $app.empty().append(iframe);
         
         iframe.on('load', function() {
-            $main.toggleClass("invisible");
-            $app.toggleClass("invisible");
+            $main.removeClass("invisible").addClass("invisible");
+            $connect.removeClass("invisible").addClass("invisible");
+            $app.removeClass("invisible");
             iframe.focus();
         });
     }
