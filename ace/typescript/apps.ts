@@ -58,7 +58,7 @@ function getApps(): Tile[] {
         if (stat.isDirectory()) {
             var _app = getApp(atual);
 
-            if (app != null) 
+            if (_app != null) 
                 createApp(tiles, _app);
         }
     }

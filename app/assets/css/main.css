@@ -29,7 +29,10 @@ div#app iframe
 
 div#connect
 {
-    /*background: #fff;*/
+    margin: 2em auto;
+    background: #fff;
+    width: 100%;
+    padding: 2em 0;
 }
 
 .invisible

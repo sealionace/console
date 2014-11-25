@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-var $main = $("#main");
+var $main = $("#main div");
 var $app = $("#app");
 var $connect = $("#connect");
 
@@ -46,7 +46,7 @@ win.on('document-start', function(appFrame) {
         //deprecated
         //frameWindow.ACE = ace();
         
-        delete frameWindow.global;
+        //delete frameWindow.global;
         delete frameWindow.process;
         delete frameWindow.nwDispatcher;
         
