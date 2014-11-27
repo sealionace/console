@@ -73,12 +73,15 @@ node_modules
 # SeaLion ACE
 _app
 ffmpegsumo.dll
+libffmpegsumo.so
 icudtl.dat
 libEGL.dll
 libGLESv2.dll
 nw.exe
+nw
 nw.pak
 nwsnapshot.exe
+nwsnapshot
 locales
 app/images
 app/base.bin
