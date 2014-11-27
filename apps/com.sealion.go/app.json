@@ -1,0 +1,13 @@
+{
+    "name": "Go!",
+    "bundle-id": "com.sealion.go",
+    "tile": {
+        "icon": "cart-2",
+        "bgColor": "blue",
+        "orientation": "vertical",
+        "size": "double"
+    },
+    "controller": [
+        "controle1"
+    ]
+}

@@ -15,25 +15,26 @@ var Controller = require("ace/controller");
 
 Controllers.disconnectedHandler = function() {
     if (Controllers.count() == 0) {
-        if (internal.getCurrentApp())
+        if (internal.getCurrentApp() != null)
             internal.getCurrentApp().emit('pause');
-        $main.removeClass("invisible").addClass("invisible");
-        $app.removeClass("invisible").addClass("invisible");
+        $main.addClass("invisible");
+        $app.addClass("invisible");
         $connect.removeClass("invisible");
     }
 };
 
 Controllers.connectedHandler = function() {
     if (Controllers.count() > 0) {
-        if (internal.getCurrentApp()) {
+        if (internal.getCurrentApp() != null) {
             internal.getCurrentApp().emit('resume');
+	    console.log(internal.getCurrentApp());
             $app.removeClass("invisible");
-            $main.removeClass("invisible").addClass("invisible");
+            $main.addClass("invisible");
         } else {
-            $app.removeClass("invisible").addClass("invisible");
+            $app.addClass("invisible");
             $main.removeClass("invisible");
         }
-        $connect.removeClass("invisible").addClass("invisible");
+        $connect.addClass("invisible");
     }
 };
 
@@ -46,10 +47,12 @@ win.on('document-start', function(appFrame) {
         //deprecated
         //frameWindow.ACE = ace();
         
-        //delete frameWindow.global;
+        delete frameWindow.global;
         delete frameWindow.process;
         delete frameWindow.nwDispatcher;
         
+	var _require = require;
+	
         frameWindow.require = function(module) {
             if (!module || typeof module !== "string")
                 throw new TypeError("O módulo deve ser fornecido");
@@ -65,8 +68,10 @@ win.on('document-start', function(appFrame) {
             
             // implementar integração com requirejs para fornecer jQuery e afins
             
-            throw new Exception("O módulo informado não existe");
+            //throw "O módulo informado não existe: " + module;
+            return _require(module);
         };
+	//frameWindow.require.prototype = 
     }
 });
 

@@ -12,6 +12,7 @@ import fs = require("fs");
 import express = require("express");
 import qr = require("qr-image");
 import os = require("os");
+import Controllers = require("./controllers");
 
 var currentApp: app.App = null;
 var appServe: express.RequestHandler = null;
@@ -59,6 +60,8 @@ http.listen(aceAPI.getConsolePort());
 var internal = {
 	startApp(root: string) {
 		appServe = express.static(root, { index: "main.html" });
+		//if (Controllers.count() > 0)
+		//	Controllers.
 	},
 
 	run(app: app.App, nwGui: any, iframe: JQuery): void {
