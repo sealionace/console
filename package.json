@@ -10,7 +10,7 @@
   "window": {
     "title": "SeaLion Ace",
     "toolhbar": false,
-    "as_dfesktop": true,
+    "as_desktop": true,
     "framge": false,
     "fullscreen": true
   },
