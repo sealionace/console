@@ -80,10 +80,11 @@ libGLESv2.dll
 nw.exe
 nw
 nw.pak
-nwsnapshot.exe
-nwsnapshot
+nwjc
+nwjc.exe
 locales
 app/images
 app/base.bin
 ace/*.js
 .settings
+v8.log
