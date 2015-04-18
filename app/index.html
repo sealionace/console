@@ -45,7 +45,7 @@
                 $.get('http://localhost:10000/qrcode.svg');
                 
                 setTimeout(function() {
-                    if (ace().count++ < 2)
+                    if (global.aceAPI.count++ < 2)
                         location.reload();
                     
                     $("#QRCODE").attr('src', 'http://localhost:10000/qrcode.svg').show();

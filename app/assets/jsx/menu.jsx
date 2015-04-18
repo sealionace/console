@@ -5,13 +5,13 @@ var $connect = $("#connect");
 
 var container = $main.get(0);
 
-var apps = require("ace/apps");
-var app = require("ace/app");
-var internal = require("ace/internal");
+var apps = require("./ace/apps");
+var app = require("./ace/app");
+var internal = require("./ace/internal");
 var gui = require("nw.gui");
 
-var Controllers = require("ace/controllers");
-var Controller = require("ace/controller");
+var Controllers = require("./ace/controllers");
+var Controller = require("./ace/controller");
 
 Controllers.disconnectedHandler = function() {
     if (Controllers.count() == 0) {

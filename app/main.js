@@ -5,7 +5,7 @@ var conf = exports.ace;
 // não exponhamos nossas configurações abertamente...
 delete exports.ace;
 
-module.exports = require("ace")(conf);
+module.exports = require("./ace")(conf);
 module.exports.count = 1;
 
 /*exports.getAppDir = function() {
