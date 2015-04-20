@@ -1,8 +1,8 @@
-ace-console
------------
-
+#ace-console
 Repositório de trabalho para o projeto de console.
+### Pré-requisitos
+- Typescript (http://www.typescriptlang.org/)
 
-Notas
------
-* Antes de executar, execute v8snapshot.bat (Windows) ou v8snapshot.sh (Linux), para gerar o base.bin correto. (apenas na primeira inicialização)
+### Set up
+1. Execute `ace/typescript/compilar.sh` para gerar os .js necessários.
+2. Execute **njwc.bat** (Windows) ou **nwjc.sh** (Linux), para gerar o base.bin correto.
