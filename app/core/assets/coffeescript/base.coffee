@@ -1,0 +1,2 @@
+ace = ->
+  global.aceAPI
