@@ -217,7 +217,21 @@ module.exports = function (grunt) {
           dest: '<%= config.tmp %>/app.nw'
         }]
       }
-    }
+    },
+      coffee: {
+        coffee_to_js: {
+          options: {
+            bare: false,
+            sourceMap: false
+          },
+          expand: true,
+          flatten: true,
+          cwd: 'app/core/assets',
+          src: ['coffeescript/*.coffee'],
+          dest: 'app/core/assets/js',
+          ext: '.js'
+        }
+      }
   });
 
   grunt.registerTask('chmod32', 'Add lost Permissions.', function () {
@@ -443,4 +457,6 @@ module.exports = function (grunt) {
     });
   });
 
+  grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.registerTask('compile', ['coffee']);
 };
