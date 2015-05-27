@@ -1,0 +1,78 @@
+<!--
+    Permissão 
+    
+    Android:
+    [app/res/xml/plugins.xml]
+        <plugin name="Accelerometer" value="org.apache.cordova.AccelListener" />
+    
+    iOS:
+    [App/Supporting Files/Cordova.plist]
+    <key>Plugins</key>
+    <dict>
+        <key>Accelerometer</key>
+        <string>CDVAccelerometer</string>
+    </dict>
+-->
+<script type="text/javascript" src="cordova.js"></script>
+<link rel="import" href="components/polymer/polymer.html"></link>
+<polymer-element name="sl-accel" attributes="call frequency name" extends="sl-component"> 
+    <template>
+        <style></style>
+        Atual:<br> <font color='red'>   X: {{accel.x}}</font>
+              <br> <font color='blue'>  Y: {{accel.y}}</font>
+              <br> <font color='green'> Z: {{accel.z}}</font>
+              <br>
+        Frequência: {{frequency}}
+    </template>
+    <script>
+         Polymer('sl-accel',{
+                call: undefined,
+                watchID: undefined,
+                frequency: 300,
+                accel: { x: 0.0, y: 0.0, z: 0.0 },
+                name: 'nome',
+                phonegapReady: false,
+                ready: function() {
+                    console.log('ready');
+                    document.addEventListener("deviceready",this.startWatch,false);
+                },
+                startWatch: function(){
+                    this.phonegapReady = true;
+                    var options ={ frequency: this.frequency };
+                    console.log('watching');
+                    this.watchID = navigator.accelerometer.watchAcceleration(this.onSuccess, this.onError, options);
+                },
+                onDeviceReady: function(){
+                    console.log('ready');
+                    this.phonegapReady = true;
+                    this.startWatch();
+                    
+                },
+                
+                stopWatch: function(){
+                    if(this.watchID) {
+                        navigator.accelerometer.clearWatch(this.watchID);
+                        this.watchID = undefined;
+                    }
+                },
+                onSuccess: function(acceleration){
+                    console.log('a');
+                    if (this.phonegapReady) {
+                        this.accel.x = acceleration.x;
+                        this.accel.y = acceleration.y;
+                        this.accel.z = acceleration.z;
+                        socket.emit('evento', {
+                            call: this.call,
+                            acceleration: acceleration,
+                            component: this.name
+                        });
+                    }
+                },
+                onError: function(){
+                    console.log('Erro ao obter dados do acelerômetro');
+                    socket.emit('evento', {error:'Erro ao obter dados do acelerômetro'});
+                }
+         });
+        
+    </script>
+</polymer-element>
