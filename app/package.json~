@@ -1,0 +1,31 @@
+{
+  "name": "com.ace.console",
+  "version": "0.2.1",
+  "main": "app/index.html",
+  "single-instance": true,
+  "user-agent": "Webkit/    %webkit_ver (%osinfo); SeaLion Ace/%ver",
+  "node-remote": "<local>",
+  "node-main": "app/main.js",
+  "snapshot": "app/base.bin",
+  "window": {
+    "title": "SeaLion Ace",
+    "toolhbar": false,
+    "as_desktop": true,
+    "framge": false,
+    "fullscreen": false
+  },
+    "webkit": {
+         "page-cache":false
+    },
+  "dependencies": {
+    "browserify": "^6.1.0",
+    "express": "^4.10.2",
+    "pkginfo": "^0.3.0",
+    "qr-image": "^2.0.0",
+    "react": "^0.11.2",
+    "socket.io": "^1.2.1"
+  },
+  "ace": {
+    "app-dir": "apps"
+  }
+}
