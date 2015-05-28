@@ -5,19 +5,16 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>ace</string>
+	<string>sealion</string>
 	<key>CFBundleExecutable</key>
 	<string><%= nwExecutableName %></string>
-	
-	<key>CFBundleGetInfoString</key>
-	<string>© Lucas Liza, 2013</string>
 	
 	<key>CFBundleIconFile</key>
 	<string>nw.icns</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>ace</string>
+	<string>sealion</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>CFBundlePackageType</key>
