@@ -1,7 +1,7 @@
 #ace-console
 Repositório de trabalho para o projeto de console.
 ### Pré-requisitos
-- SO: Linux x64
+- TypeScript
 
 ### Set up
 1. Execute `npm install` no diretório base e em "/app" para instalar as dependências.
@@ -9,6 +9,5 @@ Repositório de trabalho para o projeto de console.
 3. Para executar o console, vá para a pasta "dist/<TargetOS>" e rode `./node-webkit app.nw`
 
 ### To do
-- Suporte para novos SOs
 - Desbugar controle
 - Loja de Apps
